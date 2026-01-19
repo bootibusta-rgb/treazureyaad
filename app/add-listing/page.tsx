@@ -3,7 +3,9 @@
 import { useState } from 'react';
 import { supabase } from '@/lib/supabaseClient';
 import { useRouter } from 'next/navigation';
+
 export const dynamic = 'force-dynamic';
+
 export default function AddListing() {
   const [title, setTitle] = useState('');
   const [price, setPrice] = useState('');
