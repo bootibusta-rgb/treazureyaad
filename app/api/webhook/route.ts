@@ -1,4 +1,4 @@
-import { stripe } from '@/lib/stripe';
+import stripe from '@/lib/stripe';
 import { supabase } from '@/lib/supabaseClient';
 
 const stripeWebhookSecret = process.env.STRIPE_WEBHOOK_SECRET!;
