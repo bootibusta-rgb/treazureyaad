@@ -5,6 +5,7 @@ import { supabase } from '@/lib/supabaseClient';
 import { useRouter } from 'next/navigation';
 
 export const dynamic = 'force-dynamic';
+export const runtime = 'nodejs';
 
 export default function Login() {
   const [email, setEmail] = useState('');

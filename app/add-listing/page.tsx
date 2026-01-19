@@ -5,7 +5,7 @@ import { supabase } from '@/lib/supabaseClient';
 import { useRouter } from 'next/navigation';
 
 export const dynamic = 'force-dynamic';
-
+export const runtime = 'nodejs';
 export default function AddListing() {
   const [title, setTitle] = useState('');
   const [price, setPrice] = useState('');
