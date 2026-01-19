@@ -1,0 +1,54 @@
+{
+  "legends": {
+    "Montana": {
+      "title": "Big Sky Country Secrets",
+      "icon": "🏔️",
+      "content": "Legend says the Shoshone people called this land 'The Backbone of the World.' Gold miners in 1862 swore they saw ghost riders in the Crazy Mountains—spirits of fallen warriors still hunting phantom buffalo.\n\nFact: Montana has more cattle than people. Population? Just over 1 million in a state bigger than Japan. The Northern Lights dance here 200 nights a year.\n\nDark secret: The town of Garnet sits abandoned since 1912. Visitors report hearing piano music from the empty saloon at midnight. Ranch land here sells for $3,000 an acre—but old-timers won't touch the plots near Bannack.\n\nAverage winter temp: -20°F. Average summer temp: Perfect."
+    },
+    "Minnesota": {
+      "title": "Land of 10,000 Lakes (and Secrets)",
+      "icon": "🌲",
+      "content": "Legend says Lake Superior's monster, Misshepeshu—the great lynx spirit—haunts these shores. Ojibwe elders warn: never point at the lake, or the water panther will drag you under. Locals swear they hear drums when storms roll in.\n\nFact: The 1890s timber boom left ghost towns scattered through the Northwoods. Those abandoned cabins? Now rent for $500/night to 'glampers.' Population of the Iron Range: dropping fast. Average snowfall? 100+ inches.\n\nThe SS Edmund Fitzgerald went down here in '75 with 29 souls. On stormy nights, freighter captains still radio warnings to... something.\n\nLand prices: $2,500/acre near the Boundary Waters. Worth every frozen penny."
+    },
+    "Texas": {
+      "title": "Everything's Bigger—Including the Mysteries",
+      "icon": "🤠",
+      "content": "Legend has it: The Marfa Lights have danced across the desert since the 1880s. Apache warriors said they were stars that fell to earth. Scientists say 'car headlights.' Locals say scientists haven't been there at 3 AM.\n\nFact: King Ranch is bigger than Rhode Island. Texas was its own country for 9 years. There are more miles of road here than any other state—some lead to towns that don't exist on maps anymore.\n\nThe Chihuahuan Desert hides 'The Devil's Sinkhole'—a 400-foot pit where 3 million bats swirl out every sunset. Ranchers in 1867 thought it was a portal to hell.\n\nFarm land: $1,800/acre. Oil rights not included. Population: 30 million and growing."
+    },
+    "Colorado": {
+      "title": "Mile High Mysteries",
+      "icon": "⛰️",
+      "content": "Legend tells of the Tommyknockers—spirits of dead miners who knock on tunnel walls to warn of cave-ins. Or to lure you deeper. The miners of Cripple Creek left offerings of food for them. Smart men.\n\nFact: Colorado has 58 peaks over 14,000 feet. The Ute people called them 'the shining mountains.' Gold was discovered here in 1858, and within a year, 100,000 people flooded in. Most went home broke.\n\nStanley Hotel in Estes Park inspired Stephen King's 'The Shining.' Room 217 is perpetually booked—by the living and otherwise.\n\nMountain land: $5,000-50,000/acre depending on how close to the haunted hotels. Average sunny days: 300. Average ghost sightings: unconfirmed."
+    },
+    "Arizona": {
+      "title": "Desert of Lost Souls",
+      "icon": "🌵",
+      "content": "Legend speaks of the Lost Dutchman's Gold Mine in the Superstition Mountains. Jacob Waltz found it in 1891 and took the secret to his grave. Since then, 600+ treasure hunters have died searching. The Apache say the Thunder God guards it.\n\nFact: Arizona has more species of scorpions than any other state—60 and counting. The Grand Canyon is 6 million years old. Tombstone's Boothill Cemetery holds 250 souls, mostly killed by gunfire.\n\nThe town of Jerome was built on a 30-degree slope. It's sliding downhill. The old hospital is now a hotel—guests report surgeries still happening at night.\n\nDesert land: $800/acre. Water rights: priceless. Summer temps: 115°F in the shade (if you can find any)."
+    },
+    "Oregon": {
+      "title": "Pacific Northwest Phantoms",
+      "icon": "🌲",
+      "content": "Legend warns of Bandage Man—a figure wrapped in bloody gauze who jumps onto trucks near Cannon Beach since the 1960s. Loggers whisper of 'The Green Man' deep in the old growth forest—nature's vengeance on clear-cutters.\n\nFact: Oregon has more ghost towns than any Western state—over 200. The 1880s gold rush came and went, leaving empty saloons and echoing mine shafts.\n\nCrater Lake is 1,943 feet deep—the deepest in America. The Klamath people say the spirit Llao lives at the bottom. Scientists found a 30-foot 'Old Man' log that's been floating vertically for 120+ years. No explanation.\n\nTimber land: $4,000/acre. Rainfall: 37 inches. Bigfoot sightings: 120+ per year (just saying)."
+    },
+    "Nevada": {
+      "title": "Silver State Shadows",
+      "icon": "🎰",
+      "content": "Legend persists: Area 51 holds more than weather balloons. But locals near Rachel, NV are more concerned with the 'Black Mailbox'—a meeting point where strange lights appear weekly. The government says nothing. They always say nothing.\n\nFact: Nevada is 85% federally owned. More than any other state. What are they hiding? (Probably nothing. Probably.)\n\nVirginia City was the richest place on Earth in 1876—silver everywhere. Now it's a ghost town where the Washoe Club Haunted Museum offers 'overnight investigations.' Most guests leave early.\n\nDesert land: $200/acre in the empty parts. Las Vegas exists because Bugsy Siegel was too crazy to fail. Population: 3 million, mostly within 50 miles of The Strip."
+    },
+    "Maine": {
+      "title": "Where Stephen King Gets His Ideas",
+      "icon": "🦞",
+      "content": "Legend has it: The island of Malaga was 'cleansed' in 1912—its mixed-race community forcibly removed, their homes burned, their dead dug up and relocated. The state apologized 98 years later. Some say the lighthouse still shows lights when no keeper is there.\n\nFact: Maine is 90% forest—the most forested state. Population density: 43 people per square mile. That's a lot of empty woods.\n\nStephen King lives in Bangor. His house has a spider-web gate. Every story he writes is 'fiction.' The locals smile knowingly.\n\nThe town of Moxie gave its name to the oldest soda in America. It tastes like medicine. Maine people drink it anyway.\n\nCoastal land: $8,000/acre. Lobsters: $6/pound. Winters: Long and dark."
+    },
+    "Wyoming": {
+      "title": "The Cowboy State's Secrets",
+      "icon": "🦬",
+      "content": "Legend echoes in the Wind River Range: the Sheepeater people lived in caves here for 10,000 years, hunting bighorn sheep with dogs. When white settlers arrived, the Sheepeaters vanished—melted into the mountains. Or maybe they're still there.\n\nFact: Wyoming has 2 escalators. Total. In the whole state. Population: 580,000—fewer than some city blocks. Yellowstone has 10,000 geothermal features and sits on a supervolcano that's 'overdue.'\n\nDevils Tower was the first National Monument (1906). The Lakota call it 'Bear Lodge' and say a giant bear clawed the sides trying to reach children who became the Pleiades stars.\n\nRanch land: $1,500/acre. Neighbors: Optional. Sky: Bigger than you've ever seen."
+    },
+    "Louisiana": {
+      "title": "Bayou Mysteries",
+      "icon": "🐊",
+      "content": "Legend lives in the swamps: the Rougarou—a Cajun werewolf—prowls the bayous during Lent, hunting Catholics who break their fasts. Grandmothers still warn children: 'Stay inside after dark, cher.'\n\nFact: Louisiana is losing a football field of land to the Gulf every 100 minutes. Maps from 1950 show towns that are now open water. The dead in New Orleans are buried above ground because coffins float up.\n\nMarie Laveau, Voodoo Queen of New Orleans, died in 1881. Her tomb in St. Louis Cemetery #1 is covered in X marks—offerings from believers. They say she still grants wishes.\n\nSwamp land: $2,000/acre. Gator population: 2 million. Hurricane season: June-November. Gumbo: Year-round."
+    }
+  }
+}

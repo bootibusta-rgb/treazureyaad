@@ -1,185 +1,97 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import './globals.css';
+import Link from 'next/link';
+import Image from 'next/image';
+import Sidebar from '@/components/Sidebar';
+import ListingCard from '@/components/ListingCard';
+import { carsListings, propertiesListings, Listing } from '@/data/listings';
 
 export default function Home() {
-  const [showSignupModal, setShowSignupModal] = useState(false);
-  const [showLoginModal, setShowLoginModal] = useState(false);
-  const [sidebarOpen, setSidebarOpen] = useState(true);
-  const [selectedCategory, setSelectedCategory] = useState('cars');
-  const [loggedIn, setLoggedIn] = useState(false);
-  const [userName, setUserName] = useState('John');
+  const [activeCategory, setActiveCategory] = useState<'cars' | 'properties'>('cars');
+  const [scrollY, setScrollY] = useState(0);
+  const [isVisible, setIsVisible] = useState(false);
+
+  const currentListings: Listing[] = activeCategory === 'cars' ? carsListings : propertiesListings;
+  const featuredListings = [...carsListings, ...propertiesListings].slice(0, 6);
 
   useEffect(() => {
-    const ticker = document.getElementById('ticker-content');
-    if (ticker) {
-      ticker.innerHTML = 'Tesla Model 3 sold for $38k • Jamaica beach house gone for $220k • Fishing boat auction ends in 00:09:23';
-    }
+    const handleScroll = () => setScrollY(window.scrollY);
+    window.addEventListener('scroll', handleScroll);
+    setIsVisible(true);
+    return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const toggleSidebar = () => setSidebarOpen(!sidebarOpen);
-  const selectCategory = (cat: string) => setSelectedCategory(cat);
-  const openModal = (type: string) => {
-    if (type === 'signup') setShowSignupModal(true);
-    if (type === 'login') setShowLoginModal(true);
-  };
-  const closeModal = () => {
-    setShowSignupModal(false);
-    setShowLoginModal(false);
-  };
+  const stats = [
+    { number: '10,000+', label: 'Active Listings', icon: '📦' },
+    { number: '50,000+', label: 'Happy Customers', icon: '😊' },
+    { number: '500+', label: 'Daily Visitors', icon: '👥' },
+    { number: '99%', label: 'Satisfaction Rate', icon: '⭐' },
+  ];
+
+  const categories = [
+    { name: 'Cars', icon: '🚗', count: carsListings.length, color: '#3b82f6' },
+    { name: 'Properties', icon: '🏠', count: propertiesListings.length, color: '#14b8a6' },
+    { name: 'Trucks', icon: '🚚', count: 25, color: '#f97316' },
+    { name: 'Boats', icon: '⛵', count: 18, color: '#06b6d4' },
+  ];
 
   return (
-    <>
-      {/* Navbar */}
+    <div className="container">
       <nav className="navbar">
         <div className="navbar-brand">
-          <img src="/treazure-yaad-logo.svg" alt="Treazure Yaad" className="navbar-logo-img" />
+          <Link href="/" className="navbar-logo">
+            <Image 
+              src="/treazure-yaad-logo.svg" 
+              alt="Treazure Yaad" 
+              width={180} 
+              height={60} 
+              priority 
+            />
+          </Link>
         </div>
         <div className="navbar-links">
-          <button className="navbar-link" style={{ background: 'linear-gradient(135deg, #10b981 0%, #059669 100%)' }} onClick={() => openModal('postListing')}>
-            + Post Listing
-          </button>
-          {!loggedIn ? (
-            <>
-              <button className="navbar-link" onClick={() => openModal('signup')}>Sign Up</button>
-              <button className="navbar-link" onClick={() => openModal('login')}>Login</button>
-            </>
-          ) : (
-            <>
-              <button className="navbar-link">📊 Dashboard</button>
-              <div className="navbar-online-status">
-                <span className="online-dot online"></span>
-                <span className="online-text online">Online</span>
-              </div>
-              <span className="user-badge">👤 {userName}</span>
-              <button className="navbar-link" style={{ background: '#ef4444' }} onClick={() => setLoggedIn(false)}>Logout</button>
-            </>
-          )}
-          <button className="pro-badge-nav">
-            <span>🔒</span>
-            <span>Pro</span>
-          </button>
+          <Link href="/sign-up" className="navbar-link">
+            Sign Up
+          </Link>
+          <Link href="/login" className="navbar-link">
+            Login
+          </Link>
         </div>
       </nav>
 
-      {/* Ticker Bar */}
-      <div className="ticker-bar" id="ticker-bar">
-        <div className="ticker-content" id="ticker-content"></div>
-      </div>
-
-      {/* Ad Banner */}
-      <div className="ad-banner">
-        <p className="ad-banner-text"><span className="sponsored-text">Sponsored:</span> Get your listing seen by 100k buyers</p>
-        <button className="ad-banner-btn">Advertise with us</button>
-      </div>
-
-      {/* Sidebar */}
-      <aside className={`sidebar ${sidebarOpen ? '' : 'collapsed'}`} id="sidebar">
-        <div className="sidebar-header">
-          <h2 className="sidebar-title flash-colors">Categories</h2>
-          <button className="sidebar-toggle" id="sidebar-toggle" onClick={toggleSidebar} title="Toggle sidebar">
-            <span className="toggle-icon">◀</span>
-          </button>
-        </div>
-        <div className="category-section">
-          <div className="category-section-title">Vehicles</div>
-          <nav className="sidebar-nav" id="vehicles-nav">
-            <a href="#" onClick={() => selectCategory('cars')}>Cars</a>
-            <a href="#" onClick={() => selectCategory('trucks')}>Trucks</a>
-            <a href="#" onClick={() => selectCategory('motorcycles')}>Motorcycles</a>
-            <a href="#" onClick={() => selectCategory('boats')}>Boats</a>
-            <a href="#" onClick={() => selectCategory('planes')}>Planes</a>
-          </nav>
-        </div>
-        <div className="category-section">
-          <div className="category-section-title">Parts</div>
-          <nav className="sidebar-nav" id="parts-nav">
-            <a href="#">Engine</a>
-            <a href="#">Tires</a>
-            <a href="#">Electronics</a>
-          </nav>
-        </div>
-        <div className="category-section">
-          <div className="category-section-title">Other</div>
-          <nav className="sidebar-nav" id="other-nav">
-            <a href="#" onClick={() => selectCategory('properties')}>Properties</a>
-            <a href="#">Jewelry</a>
-            <a href="#">Collectibles</a>
-          </nav>
-        </div>
-      </aside>
-
-      {/* Main Content */}
-      <main className={`main-content ${sidebarOpen ? 'with-sidebar' : ''}`}>
+      <Sidebar activeCategory={activeCategory} onCategoryChange={setActiveCategory} />
+      
+      <main className="main-content">
         {/* Hero Section */}
-        <section className="hero">
-          <div className="hero-video-container">
-            <video className="hero-video" autoPlay muted loop playsInline poster="https://images.pexels.com/videos/7578550/pexels-photo-7578550.jpeg">
-              <source src="https://videos.pexels.com/video-files/7578550/7578550-hd_1920_1080_30fps.mp4" type="video/mp4" />
-            </video>
-            <div className="hero-bg-image"></div>
-          </div>
-          <div className="hero-overlay"></div>
-
-          <div className="activity-badges">
-            <div className="activity-badge">
-              <span>🚗</span>
-              <div className="activity-badge-text">
-                <span className="activity-badge-title">Tesla Model 3 Sold!</span>
-                <span className="activity-badge-sub">2 minutes ago • New York</span>
-              </div>
-            </div>
-            <div className="activity-badge">
-              <span>🏠</span>
-              <div className="activity-badge-text">
-                <span className="activity-badge-title">Beach Villa Purchased</span>
-                <span className="activity-badge-sub">5 minutes ago • Malibu</span>
-              </div>
-            </div>
-            <div className="activity-badge">
-              <span>🚚</span>
-              <div className="activity-badge-text">
-                <span className="activity-badge-title">F-150 Raptor Deal Closed</span>
-                <span className="activity-badge-sub">8 minutes ago • Dallas</span>
-              </div>
-            </div>
-            <div className="activity-badge">
-              <span>⛵</span>
-              <div className="activity-badge-text">
-                <span className="activity-badge-title">Boston Whaler Sold!</span>
-                <span className="activity-badge-sub">12 minutes ago • Miami</span>
-              </div>
-            </div>
-            <div className="activity-badge">
-              <span>✈️</span>
-              <div className="activity-badge-text">
-                <span className="activity-badge-title">Cessna 172 Reserved</span>
-                <span className="activity-badge-sub">15 minutes ago • Van Nuys</span>
-              </div>
-            </div>
-            <div className="activity-badge">
-              <span>🏍️</span>
-              <div className="activity-badge-text">
-                <span className="activity-badge-title">Ducati Panigale Sold!</span>
-                <span className="activity-badge-sub">18 minutes ago • Miami</span>
-              </div>
-            </div>
-          </div>
-
-          <img src="/treazure-yaad-logo.svg" alt="Treazure Yaad Background" className="hero-bg-logo" />
+        <section className={`hero ${isVisible ? 'visible' : ''}`}>
+          {/* Full-screen logo background */}
+          <Image 
+            src="/treazure-yaad-logo.svg" 
+            alt="Treazure Yaad Background" 
+            width={1920}
+            height={1080}
+            priority 
+            className="hero-bg-logo"
+          />
+          
+          {/* Dark overlay for text readability */}
           <div className="hero-dark-overlay"></div>
-
+          
           <div className="hero-content">
             <h1 className="hero-title">
               <span className="gradient-text">Treazure Yaad</span>
             </h1>
             <p className="hero-subtitle">
-              Discover amazing deals on cars, properties, boats, and more. Join thousands of satisfied customers.
+              Discover amazing deals on cars, properties, and more. Join thousands of satisfied customers.
             </p>
             <div className="hero-buttons">
-              <button className="btn-primary" onClick={() => openModal('signup')}>Get Started</button>
-              <button className="btn-secondary" onClick={() => document.getElementById('featured')?.scrollIntoView()}>Explore Listings</button>
+              <Link href="/sign-up" className="btn-primary">
+                Get Started
+              </Link>
+              <button className="btn-secondary" onClick={() => document.querySelector('.featured-section')?.scrollIntoView({ behavior: 'smooth' })}>
+                Explore Listings
+              </button>
             </div>
           </div>
           <div className="floating-shapes">
@@ -189,201 +101,608 @@ export default function Home() {
           </div>
         </section>
 
-        {/* Trust Bar */}
-        <div className="trust-bar">
-          <div className="trust-badge">
-            <span className="trust-icon">🔒</span>
-            <span className="trust-text">Secure Payments</span>
-          </div>
-          <div className="trust-badge">
-            <span className="trust-icon">❤️</span>
-            <span className="trust-text">10,000+ Happy Users</span>
-          </div>
-          <div className="trust-badge">
-            <span className="trust-icon">✓</span>
-            <span className="trust-text">Verified Sellers Only</span>
-          </div>
-          <div className="trust-badge">
-            <span className="trust-icon">📞</span>
-            <span className="trust-text">24/7 Support</span>
-          </div>
-        </div>
-
-        {/* Featured Sellers Section */}
-        <section className="featured-sellers-section">
-          <h2 className="section-title">Featured Sellers</h2>
-          <p className="section-subtitle">Top-rated dealers you can trust</p>
-          <div className="sellers-grid">
-            <div className="seller-card">
-              <img className="seller-avatar" src="https://ui-avatars.com/api/?name=Marcus+D&background=a855f7&color=fff&size=80" alt="Marcus D." />
-              <div className="seller-info">
-                <div className="seller-name">Marcus D. • Kingston</div>
-                <span className="seller-badge">Verified Dealer</span>
-                <div className="seller-stats">Sold 124 cars • ⭐ 5.0 • Pro</div>
+        {/* Stats Section */}
+        <section className={`stats-section ${isVisible ? 'visible' : ''}`}>
+          <div className="stats-grid">
+            {stats.map((stat, index) => (
+              <div key={index} className="stat-card" style={{ animationDelay: `${index * 0.1}s` }}>
+                <div className="stat-icon">{stat.icon}</div>
+                <div className="stat-number">{stat.number}</div>
+                <div className="stat-label">{stat.label}</div>
               </div>
-              <div className="seller-hover">Specializes in luxury rides</div>
-            </div>
-            <div className="seller-card">
-              <img className="seller-avatar" src="https://ui-avatars.com/api/?name=Sarah+J&background=3b82f6&color=fff&size=80" alt="Sarah J." />
-              <div className="seller-info">
-                <div className="seller-name">Sarah J. • Miami</div>
-                <span className="seller-badge realtor">Verified Realtor</span>
-                <div className="seller-stats">Sold 89 homes • ⭐ 4.9 • Pro</div>
-              </div>
-              <div className="seller-hover">Beachfront property expert</div>
-            </div>
-            <div className="seller-card">
-              <img className="seller-avatar" src="https://ui-avatars.com/api/?name=Carlos+M&background=f59e0b&color=fff&size=80" alt="Carlos M." />
-              <div className="seller-info">
-                <div className="seller-name">Carlos M. • Nassau</div>
-                <span className="seller-badge">Verified Dealer</span>
-                <div className="seller-stats">Sold 67 boats • ⭐ 4.8 • Pro</div>
-              </div>
-              <div className="seller-hover">Caribbean yacht specialist</div>
-            </div>
-            <div className="seller-card">
-              <img className="seller-avatar" src="https://ui-avatars.com/api/?name=Lisa+W&background=10b981&color=fff&size=80" alt="Lisa W." />
-              <div className="seller-info">
-                <div className="seller-name">Lisa W. • Minneapolis</div>
-                <span className="seller-badge mechanic">Certified Mechanic</span>
-                <div className="seller-stats">Sold 203 parts • ⭐ 5.0 • Pro</div>
-              </div>
-              <div className="seller-hover">Engine & performance parts</div>
-            </div>
+            ))}
           </div>
         </section>
 
         {/* Categories Section */}
-        <section className="categories-section">
+        <section className={`categories-section ${isVisible ? 'visible' : ''}`}>
           <h2 className="section-title">Browse Categories</h2>
-          <p className="section-subtitle">Find exactly what you're looking for</p>
           <div className="categories-grid">
-            <div className="category-card" data-color="blue" onClick={() => selectCategory('cars')}>
-              <div className="category-icon">🚗</div>
-              <h3 className="category-name">Cars</h3>
-              <p className="category-count">6 listings</p>
-              <div className="category-hover-effect"></div>
-            </div>
-            <div className="category-card" data-color="orange" onClick={() => selectCategory('trucks')}>
-              <div className="category-icon">🚚</div>
-              <h3 className="category-name">Trucks</h3>
-              <p className="category-count">5 listings</p>
-              <div className="category-hover-effect"></div>
-            </div>
-            <div className="category-card" data-color="red" onClick={() => selectCategory('motorcycles')}>
-              <div className="category-icon">🏍️</div>
-              <h3 className="category-name">Motorcycles</h3>
-              <p className="category-count">4 listings</p>
-              <div className="category-hover-effect"></div>
-            </div>
-            <div className="category-card" data-color="cyan" onClick={() => selectCategory('boats')}>
-              <div className="category-icon">⛵</div>
-              <h3 className="category-name">Boats</h3>
-              <p className="category-count">4 listings</p>
-              <div className="category-hover-effect"></div>
-            </div>
-            <div className="category-card" data-color="purple" onClick={() => selectCategory('planes')}>
-              <div className="category-icon">✈️</div>
-              <h3 className="category-name">Planes</h3>
-              <p className="category-count">4 listings</p>
-              <div className="category-hover-effect"></div>
-            </div>
-            <div className="category-card" data-color="teal" onClick={() => selectCategory('properties')}>
-              <div className="category-icon">🏠</div>
-              <h3 className="category-name">Properties</h3>
-              <p className="category-count">6 listings</p>
-              <div className="category-hover-effect"></div>
-            </div>
-            <div className="category-card" data-color="yellow" onClick={() => selectCategory('other')}>
-              <div className="category-icon">🛠️</div>
-              <h3 className="category-name">Other</h3>
-              <p className="category-count">8 listings</p>
-              <div className="category-hover-effect"></div>
-            </div>
+            {categories.map((category, index) => (
+              <div 
+                key={index} 
+                className="category-card"
+                style={{ 
+                  '--category-color': category.color,
+                  animationDelay: `${index * 0.1}s`
+                } as React.CSSProperties}
+              >
+                <div className="category-icon">{category.icon}</div>
+                <h3 className="category-name">{category.name}</h3>
+                <p className="category-count">{category.count} listings</p>
+                <div className="category-hover-effect"></div>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        {/* Featured Listings */}
+        <section className={`featured-section ${isVisible ? 'visible' : ''}`}>
+          <div className="section-header">
+            <h2 className="section-title">Featured Listings</h2>
+            <p className="section-subtitle">Hand-picked selections just for you</p>
+          </div>
+          <div className="listings-grid">
+            {featuredListings.map((listing, index) => (
+              <div key={listing.id} style={{ animationDelay: `${index * 0.1}s` }}>
+                <ListingCard listing={listing} />
+              </div>
+            ))}
           </div>
         </section>
 
         {/* CTA Section */}
-        <section className="cta-section">
-          <div className="cta-background"></div>
+        <section className={`cta-section ${isVisible ? 'visible' : ''}`}>
           <div className="cta-content">
             <h2 className="cta-title">Ready to List Your Item?</h2>
             <p className="cta-subtitle">Join our marketplace and reach thousands of potential buyers</p>
-            <button className="cta-button" onClick={() => openModal('signup')}>Create Your Listing</button>
+            <Link href="/sign-up" className="cta-button">
+              Create Your Listing
+            </Link>
           </div>
+          <div className="cta-background"></div>
         </section>
       </main>
 
-      {/* Sign Up Modal */}
-      {showSignupModal && (
-        <div className="modal-overlay" id="signupModal">
-          <div className="modal-content">
-            <button className="modal-close" onClick={() => closeModal()}>&times;</button>
-            <h2 className="modal-title">Join as a Creator</h2>
-            <p className="modal-subtitle">Sign up to start listing and selling</p>
-            <form id="signupForm">
-              <div className="form-group">
-                <label className="form-label">Full Name</label>
-                <input type="text" className="form-input" id="signup-name" placeholder="John Doe" required />
-              </div>
-              <div className="form-group">
-                <label className="form-label">Email Address</label>
-                <input type="email" className="form-input" id="signup-email" placeholder="john@example.com" required />
-              </div>
-              <div className="form-group">
-                <label className="form-label">Password</label>
-                <input type="password" className="form-input" id="signup-password" placeholder="••••••••" required minLength={8} />
-              </div>
-              <div className="form-group">
-                <label className="form-label">What do you sell? *</label>
-                <select className="form-select" id="signup-role" required>
-                  <option value="" disabled selected>Select your seller type...</option>
-                  <option value="realtor">🏠 Realtor</option>
-                  <option value="car-dealer">🚗 Car Dealer</option>
-                  <option value="mechanic">🔧 Mechanic</option>
-                  <option value="appliance-seller">📺 Appliance Seller</option>
-                  <option value="other">📦 Other</option>
-                </select>
-              </div>
-              <div className="terms-checkbox-container">
-                <input type="checkbox" className="terms-checkbox" id="signup-terms" />
-                <label className="terms-label">
-                  I agree to the <span className="terms-link">Terms of Service</span>, <span className="terms-link">Privacy Policy</span> & <span className="terms-link">Caribbean User Agreement</span>
-                </label>
-              </div>
-              <button type="submit" className="create-ad-btn">Create Account</button>
-              <div className="form-footer">
-                Already have an account? <a href="#" onClick={() => { closeModal(); openModal('login'); }}>Sign in</a>
-              </div>
-            </form>
-          </div>
-        </div>
-      )}
+      <style jsx>{`
+        .navbar {
+          position: fixed;
+          top: 0;
+          left: 280px;
+          right: 0;
+          height: 70px;
+          background: linear-gradient(90deg, rgba(10, 10, 10, 0.95) 0%, rgba(26, 26, 26, 0.95) 100%);
+          backdrop-filter: blur(10px);
+          border-bottom: 2px solid var(--purple);
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          padding: 0 2.5rem;
+          z-index: 100;
+          box-shadow: 0 4px 20px rgba(147, 51, 234, 0.2);
+        }
 
-      {/* Login Modal */}
-      {showLoginModal && (
-        <div className="modal-overlay" id="loginModal">
-          <div className="modal-content">
-            <button className="modal-close" onClick={() => closeModal()}>&times;</button>
-            <h2 className="modal-title">Welcome Back</h2>
-            <p className="modal-subtitle">Sign in to your account</p>
-            <form id="loginForm">
-              <div className="form-group">
-                <label className="form-label">Email Address</label>
-                <input type="email" className="form-input" placeholder="john@example.com" required />
-              </div>
-              <div className="form-group">
-                <label className="form-label">Password</label>
-                <input type="password" className="form-input" placeholder="••••••••" required />
-              </div>
-              <button type="submit" className="create-ad-btn">Login</button>
-              <div className="form-footer">
-                Don't have an account? <a href="#" onClick={() => { closeModal(); openModal('signup'); }}>Sign up</a>
-              </div>
-            </form>
-          </div>
-        </div>
-      )}
-    </>
+        .navbar-brand {
+          display: flex;
+          align-items: center;
+        }
+
+        .navbar-logo {
+          display: flex;
+          align-items: center;
+          text-decoration: none;
+        }
+
+        .navbar-links {
+          display: flex;
+          gap: 2rem;
+          align-items: center;
+        }
+
+        .navbar-link {
+          color: var(--white);
+          text-decoration: none;
+          font-weight: 600;
+          font-size: 1rem;
+          padding: 0.5rem 1.5rem;
+          border-radius: 8px;
+          background: linear-gradient(135deg, var(--purple) 0%, var(--blue) 100%);
+          transition: all 0.3s ease;
+          box-shadow: 0 2px 10px rgba(147, 51, 234, 0.3);
+        }
+
+        .navbar-link:hover {
+          background: linear-gradient(135deg, var(--blue) 0%, var(--purple) 100%);
+          transform: translateY(-2px);
+          box-shadow: 0 4px 15px rgba(147, 51, 234, 0.5);
+        }
+
+        .container {
+          display: flex;
+          min-height: 100vh;
+          background: var(--black-dark);
+        }
+
+        .main-content {
+          margin-left: 280px;
+          margin-top: 70px;
+          width: calc(100% - 280px);
+          min-height: calc(100vh - 70px);
+        }
+
+        /* Hero Section */
+        .hero {
+          position: relative;
+          min-height: 90vh;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          overflow: hidden;
+          padding: 4rem 2.5rem;
+          opacity: 0;
+          transform: translateY(30px);
+          transition: all 0.8s ease;
+        }
+
+        .hero.visible {
+          opacity: 1;
+          transform: translateY(0);
+        }
+
+        .hero-bg-logo {
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: auto;
+          height: 100vh;
+          object-fit: contain;
+          z-index: 0;
+        }
+
+        @media (min-width: 768px) {
+          .hero-bg-logo {
+            object-fit: cover;
+            width: 100%;
+          }
+        }
+
+        .hero-dark-overlay {
+          position: absolute;
+          top: 0;
+          left: 0;
+          right: 0;
+          bottom: 0;
+          background: rgba(0, 0, 0, 0.35);
+          z-index: 1;
+        }
+
+        .hero-content {
+          position: relative;
+          z-index: 1;
+          text-align: center;
+          max-width: 800px;
+        }
+
+        .hero-title {
+          font-size: 4.5rem;
+          font-weight: 900;
+          margin-bottom: 1.5rem;
+          line-height: 1.1;
+          color: var(--white);
+          text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
+        }
+
+        .gradient-text {
+          background: linear-gradient(135deg, var(--purple) 0%, var(--blue) 50%, var(--orange) 100%);
+          -webkit-background-clip: text;
+          -webkit-text-fill-color: transparent;
+          background-clip: text;
+        }
+
+        .hero-subtitle {
+          font-size: 1.25rem;
+          color: #9ca3af;
+          margin-bottom: 2.5rem;
+          line-height: 1.6;
+          text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
+        }
+
+        .hero-buttons {
+          display: flex;
+          gap: 1rem;
+          justify-content: center;
+          flex-wrap: wrap;
+        }
+
+        .btn-primary, .btn-secondary {
+          padding: 1rem 2.5rem;
+          font-size: 1.1rem;
+          font-weight: 700;
+          border-radius: 12px;
+          text-decoration: none;
+          transition: all 0.3s ease;
+          border: none;
+          cursor: pointer;
+          text-transform: uppercase;
+          letter-spacing: 0.5px;
+        }
+
+        .btn-primary {
+          background: linear-gradient(135deg, var(--purple) 0%, var(--blue) 100%);
+          color: var(--white);
+          box-shadow: 0 4px 20px rgba(147, 51, 234, 0.4);
+        }
+
+        .btn-primary:hover {
+          transform: translateY(-3px);
+          box-shadow: 0 8px 30px rgba(147, 51, 234, 0.6);
+        }
+
+        .btn-secondary {
+          background: transparent;
+          color: var(--white);
+          border: 2px solid var(--purple);
+        }
+
+        .btn-secondary:hover {
+          background: rgba(147, 51, 234, 0.1);
+          transform: translateY(-3px);
+        }
+
+        .floating-shapes {
+          position: absolute;
+          top: 0;
+          left: 0;
+          right: 0;
+          bottom: 0;
+          z-index: 0;
+          pointer-events: none;
+        }
+
+        .shape {
+          position: absolute;
+          border-radius: 50%;
+          opacity: 0.1;
+          animation: float 20s infinite ease-in-out;
+        }
+
+        .shape-1 {
+          width: 300px;
+          height: 300px;
+          background: var(--purple);
+          top: 10%;
+          left: 10%;
+          animation-delay: 0s;
+        }
+
+        .shape-2 {
+          width: 200px;
+          height: 200px;
+          background: var(--blue);
+          top: 60%;
+          right: 15%;
+          animation-delay: 5s;
+        }
+
+        .shape-3 {
+          width: 150px;
+          height: 150px;
+          background: var(--orange);
+          bottom: 20%;
+          left: 50%;
+          animation-delay: 10s;
+        }
+
+        @keyframes float {
+          0%, 100% { transform: translate(0, 0) rotate(0deg); }
+          33% { transform: translate(30px, -30px) rotate(120deg); }
+          66% { transform: translate(-20px, 20px) rotate(240deg); }
+        }
+
+        /* Stats Section */
+        .stats-section {
+          padding: 4rem 2.5rem;
+          opacity: 0;
+          transform: translateY(30px);
+          transition: all 0.8s ease;
+        }
+
+        .stats-section.visible {
+          opacity: 1;
+          transform: translateY(0);
+        }
+
+        .stats-grid {
+          display: grid;
+          grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+          gap: 2rem;
+        }
+
+        .stat-card {
+          background: linear-gradient(145deg, var(--gray-dark) 0%, var(--gray-medium) 100%);
+          border: 2px solid var(--gray-light);
+          border-radius: 20px;
+          padding: 2rem;
+          text-align: center;
+          transition: all 0.3s ease;
+          animation: fadeInUp 0.6s ease forwards;
+          opacity: 0;
+        }
+
+        .stat-card:hover {
+          transform: translateY(-10px);
+          border-color: var(--purple);
+          box-shadow: 0 12px 40px rgba(147, 51, 234, 0.3);
+        }
+
+        .stat-icon {
+          font-size: 3rem;
+          margin-bottom: 1rem;
+        }
+
+        .stat-number {
+          font-size: 2.5rem;
+          font-weight: 800;
+          background: linear-gradient(135deg, var(--purple) 0%, var(--blue) 100%);
+          -webkit-background-clip: text;
+          -webkit-text-fill-color: transparent;
+          background-clip: text;
+          margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+          color: #9ca3af;
+          font-size: 1rem;
+          font-weight: 600;
+        }
+
+        @keyframes fadeInUp {
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+
+        /* Categories Section */
+        .categories-section {
+          padding: 4rem 2.5rem;
+          opacity: 0;
+          transform: translateY(30px);
+          transition: all 0.8s ease;
+        }
+
+        .categories-section.visible {
+          opacity: 1;
+          transform: translateY(0);
+        }
+
+        .section-title {
+          font-size: 2.5rem;
+          font-weight: 800;
+          margin-bottom: 1rem;
+          background: linear-gradient(135deg, var(--purple) 0%, var(--blue) 50%, var(--orange) 100%);
+          -webkit-background-clip: text;
+          -webkit-text-fill-color: transparent;
+          background-clip: text;
+        }
+
+        .categories-grid {
+          display: grid;
+          grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+          gap: 2rem;
+          margin-top: 2rem;
+        }
+
+        .category-card {
+          position: relative;
+          background: linear-gradient(145deg, var(--gray-dark) 0%, var(--gray-medium) 100%);
+          border: 2px solid var(--gray-light);
+          border-radius: 20px;
+          padding: 2.5rem;
+          text-align: center;
+          cursor: pointer;
+          transition: all 0.4s ease;
+          overflow: hidden;
+          animation: fadeInUp 0.6s ease forwards;
+          opacity: 0;
+        }
+
+        .category-card:hover {
+          transform: translateY(-10px) scale(1.02);
+          border-color: var(--category-color);
+          box-shadow: 0 15px 50px rgba(0, 0, 0, 0.4);
+        }
+
+        .category-icon {
+          font-size: 4rem;
+          margin-bottom: 1rem;
+          transition: transform 0.3s ease;
+        }
+
+        .category-card:hover .category-icon {
+          transform: scale(1.2) rotate(10deg);
+        }
+
+        .category-name {
+          font-size: 1.5rem;
+          font-weight: 700;
+          color: var(--white);
+          margin-bottom: 0.5rem;
+        }
+
+        .category-count {
+          color: var(--category-color);
+          font-weight: 600;
+        }
+
+        .category-hover-effect {
+          position: absolute;
+          top: 0;
+          left: -100%;
+          width: 100%;
+          height: 100%;
+          background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+          transition: left 0.5s ease;
+        }
+
+        .category-card:hover .category-hover-effect {
+          left: 100%;
+        }
+
+        /* Featured Section */
+        .featured-section {
+          padding: 4rem 2.5rem;
+          opacity: 0;
+          transform: translateY(30px);
+          transition: all 0.8s ease;
+        }
+
+        .featured-section.visible {
+          opacity: 1;
+          transform: translateY(0);
+        }
+
+        .section-header {
+          margin-bottom: 3rem;
+          text-align: center;
+        }
+
+        .section-subtitle {
+          font-size: 1.2rem;
+          color: #9ca3af;
+          margin-top: 0.5rem;
+        }
+
+        .listings-grid {
+          display: grid;
+          grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+          gap: 2rem;
+        }
+
+        .listings-grid > div {
+          animation: fadeInUp 0.6s ease forwards;
+          opacity: 0;
+        }
+
+        /* CTA Section */
+        .cta-section {
+          position: relative;
+          padding: 6rem 2.5rem;
+          margin: 4rem 0;
+          border-radius: 30px;
+          overflow: hidden;
+          opacity: 0;
+          transform: translateY(30px);
+          transition: all 0.8s ease;
+        }
+
+        .cta-section.visible {
+          opacity: 1;
+          transform: translateY(0);
+        }
+
+        .cta-background {
+          position: absolute;
+          top: 0;
+          left: 0;
+          right: 0;
+          bottom: 0;
+          background: linear-gradient(135deg, var(--purple) 0%, var(--blue) 100%);
+          opacity: 0.1;
+          z-index: 0;
+        }
+
+        .cta-content {
+          position: relative;
+          z-index: 1;
+          text-align: center;
+          max-width: 600px;
+          margin: 0 auto;
+        }
+
+        .cta-title {
+          font-size: 3rem;
+          font-weight: 800;
+          margin-bottom: 1rem;
+          color: var(--white);
+        }
+
+        .cta-subtitle {
+          font-size: 1.2rem;
+          color: #9ca3af;
+          margin-bottom: 2rem;
+        }
+
+        .cta-button {
+          display: inline-block;
+          padding: 1.2rem 3rem;
+          background: linear-gradient(135deg, var(--purple) 0%, var(--blue) 100%);
+          color: var(--white);
+          text-decoration: none;
+          border-radius: 12px;
+          font-size: 1.2rem;
+          font-weight: 700;
+          transition: all 0.3s ease;
+          box-shadow: 0 4px 20px rgba(147, 51, 234, 0.4);
+          text-transform: uppercase;
+          letter-spacing: 1px;
+        }
+
+        .cta-button:hover {
+          transform: translateY(-3px);
+          box-shadow: 0 8px 30px rgba(147, 51, 234, 0.6);
+        }
+
+        @media (max-width: 1024px) {
+          .hero-title {
+            font-size: 3.5rem;
+          }
+          .listings-grid {
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 1.5rem;
+          }
+        }
+
+        @media (max-width: 768px) {
+          .navbar {
+            left: 0;
+            padding: 0 1.5rem;
+          }
+
+          .main-content {
+            margin-left: 0;
+            width: 100%;
+          }
+
+          .hero {
+            min-height: 70vh;
+            padding: 2rem 1.5rem;
+          }
+
+          .hero-title {
+            font-size: 2.5rem;
+          }
+
+          .hero-subtitle {
+            font-size: 1rem;
+          }
+
+          .stats-section,
+          .categories-section,
+          .featured-section,
+          .cta-section {
+            padding: 2rem 1.5rem;
+          }
+
+          .listings-grid {
+            grid-template-columns: 1fr;
+          }
+
+          .categories-grid {
+            grid-template-columns: repeat(2, 1fr);
+          }
+        }
+      `}</style>
+    </div>
   );
 }

@@ -1,0 +1,235 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 300" width="700" height="300">
+  <defs>
+    <!-- Animated Rainbow gradient for main text -->
+    <linearGradient id="textGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#fbbf24">
+        <animate attributeName="stop-color" values="#fbbf24;#a855f7;#ec4899;#3b82f6;#10b981;#fbbf24" dur="4s" repeatCount="indefinite"/>
+      </stop>
+      <stop offset="33%" style="stop-color:#a855f7">
+        <animate attributeName="stop-color" values="#a855f7;#ec4899;#3b82f6;#10b981;#fbbf24;#a855f7" dur="4s" repeatCount="indefinite"/>
+      </stop>
+      <stop offset="66%" style="stop-color:#3b82f6">
+        <animate attributeName="stop-color" values="#3b82f6;#10b981;#fbbf24;#a855f7;#ec4899;#3b82f6" dur="4s" repeatCount="indefinite"/>
+      </stop>
+      <stop offset="100%" style="stop-color:#fbbf24">
+        <animate attributeName="stop-color" values="#fbbf24;#a855f7;#ec4899;#3b82f6;#10b981;#fbbf24" dur="4s" repeatCount="indefinite"/>
+      </stop>
+    </linearGradient>
+    
+    <!-- Bright gold pulsing gradient for Yaad -->
+    <linearGradient id="yaadGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#fcd34d">
+        <animate attributeName="stop-color" values="#fcd34d;#fbbf24;#f59e0b;#fbbf24;#fcd34d" dur="2s" repeatCount="indefinite"/>
+      </stop>
+      <stop offset="50%" style="stop-color:#fbbf24">
+        <animate attributeName="stop-color" values="#fbbf24;#f59e0b;#fcd34d;#f59e0b;#fbbf24" dur="2s" repeatCount="indefinite"/>
+      </stop>
+      <stop offset="100%" style="stop-color:#f59e0b">
+        <animate attributeName="stop-color" values="#f59e0b;#fcd34d;#fbbf24;#fcd34d;#f59e0b" dur="2s" repeatCount="indefinite"/>
+      </stop>
+    </linearGradient>
+    
+    <!-- Animated swoosh gradient -->
+    <linearGradient id="swooshGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#fbbf24">
+        <animate attributeName="stop-color" values="#fbbf24;#f59e0b;#ec4899;#a855f7;#fbbf24" dur="3s" repeatCount="indefinite"/>
+      </stop>
+      <stop offset="50%" style="stop-color:#ec4899">
+        <animate attributeName="stop-color" values="#ec4899;#a855f7;#fbbf24;#f59e0b;#ec4899" dur="3s" repeatCount="indefinite"/>
+      </stop>
+      <stop offset="100%" style="stop-color:#a855f7">
+        <animate attributeName="stop-color" values="#a855f7;#fbbf24;#f59e0b;#ec4899;#a855f7" dur="3s" repeatCount="indefinite"/>
+      </stop>
+    </linearGradient>
+    
+    <!-- Blue metallic gradient with shine -->
+    <linearGradient id="blueMetallic" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#93c5fd"/>
+      <stop offset="30%" style="stop-color:#3b82f6"/>
+      <stop offset="60%" style="stop-color:#2563eb"/>
+      <stop offset="100%" style="stop-color:#1d4ed8"/>
+    </linearGradient>
+    
+    <!-- White/Silver gradient for mansion -->
+    <linearGradient id="mansionGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#ffffff"/>
+      <stop offset="100%" style="stop-color:#e5e7eb"/>
+    </linearGradient>
+    
+    <!-- Glow filter -->
+    <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="4" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    
+    <!-- Strong glow for text -->
+    <filter id="textGlow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="6" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    
+    <!-- Drop shadow filter -->
+    <filter id="dropShadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="3" dy="5" stdDeviation="4" flood-color="#000000" flood-opacity="0.5"/>
+    </filter>
+    
+    <!-- Sparkle filter -->
+    <filter id="sparkle">
+      <feGaussianBlur stdDeviation="2" result="blur"/>
+      <feSpecularLighting result="spec" in="blur" specularExponent="50" lighting-color="#fff">
+        <fePointLight x="100" y="100" z="200">
+          <animate attributeName="x" values="0;700;0" dur="4s" repeatCount="indefinite"/>
+        </fePointLight>
+      </feSpecularLighting>
+      <feComposite in="SourceGraphic" in2="spec" operator="arithmetic" k1="0" k2="1" k3="1" k4="0"/>
+    </filter>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="700" height="300" fill="#0a0a0a"/>
+  
+  <!-- Animated background stars/sparkles -->
+  <circle cx="100" cy="50" r="2" fill="#fbbf24">
+    <animate attributeName="opacity" values="0;1;0" dur="2s" repeatCount="indefinite"/>
+  </circle>
+  <circle cx="300" cy="30" r="1.5" fill="#a855f7">
+    <animate attributeName="opacity" values="0;1;0" dur="1.5s" repeatCount="indefinite" begin="0.5s"/>
+  </circle>
+  <circle cx="500" cy="60" r="2" fill="#ec4899">
+    <animate attributeName="opacity" values="0;1;0" dur="2.5s" repeatCount="indefinite" begin="1s"/>
+  </circle>
+  <circle cx="650" cy="40" r="1.5" fill="#3b82f6">
+    <animate attributeName="opacity" values="0;1;0" dur="1.8s" repeatCount="indefinite" begin="0.3s"/>
+  </circle>
+  <circle cx="200" cy="280" r="2" fill="#10b981">
+    <animate attributeName="opacity" values="0;1;0" dur="2.2s" repeatCount="indefinite" begin="0.7s"/>
+  </circle>
+  <circle cx="450" cy="270" r="1.5" fill="#fbbf24">
+    <animate attributeName="opacity" values="0;1;0" dur="1.6s" repeatCount="indefinite" begin="1.2s"/>
+  </circle>
+  
+  <!-- Helicopter (top-left) -->
+  <g transform="translate(40, 25) scale(0.7)" filter="url(#dropShadow)">
+    <ellipse cx="50" cy="50" rx="35" ry="18" fill="url(#blueMetallic)"/>
+    <ellipse cx="70" cy="48" rx="15" ry="12" fill="#1e3a5f" opacity="0.8"/>
+    <path d="M15 50 L-30 48 L-30 52 L15 50" fill="url(#blueMetallic)"/>
+    <ellipse cx="-30" cy="50" rx="3" ry="12" fill="#60a5fa"/>
+    <ellipse cx="50" cy="30" rx="55" ry="4" fill="#94a3b8" opacity="0.8">
+      <animateTransform attributeName="transform" type="rotate" from="0 50 30" to="360 50 30" dur="0.1s" repeatCount="indefinite"/>
+    </ellipse>
+    <path d="M30 68 L70 68 M25 68 L25 60 M75 68 L75 60" stroke="#60a5fa" stroke-width="3" fill="none"/>
+  </g>
+  
+  <!-- Mansion (bottom-left) -->
+  <g transform="translate(30, 140) scale(0.55)" filter="url(#dropShadow)">
+    <rect x="20" y="60" width="120" height="80" fill="url(#mansionGradient)"/>
+    <polygon points="80,20 150,60 10,60" fill="#6b7280"/>
+    <rect x="35" y="75" width="25" height="30" fill="#1e3a5f"/>
+    <rect x="75" y="75" width="25" height="30" fill="#1e3a5f"/>
+    <rect x="115" y="75" width="15" height="20" fill="#1e3a5f"/>
+    <rect x="55" y="110" width="20" height="30" fill="#8b5cf6"/>
+    <rect x="25" y="60" width="8" height="80" fill="#e5e7eb"/>
+    <rect x="127" y="60" width="8" height="80" fill="#e5e7eb"/>
+    <ellipse cx="170" cy="130" rx="35" ry="15" fill="#0ea5e9" opacity="0.8">
+      <animate attributeName="opacity" values="0.6;0.9;0.6" dur="3s" repeatCount="indefinite"/>
+    </ellipse>
+  </g>
+  
+  <!-- Yacht (top-right) -->
+  <g transform="translate(530, 20) scale(0.6)" filter="url(#dropShadow)">
+    <path d="M0 70 Q50 90 150 70 L140 50 Q75 40 10 50 Z" fill="url(#blueMetallic)"/>
+    <rect x="25" y="35" width="100" height="20" rx="3" fill="#ffffff"/>
+    <rect x="40" y="15" width="60" height="25" rx="5" fill="#e5e7eb"/>
+    <rect x="50" y="20" width="15" height="10" rx="2" fill="#1e3a5f"/>
+    <rect x="75" y="20" width="15" height="10" rx="2" fill="#1e3a5f"/>
+    <rect x="73" y="-10" width="4" height="30" fill="#94a3b8"/>
+    <path d="M-10 85 Q40 75 80 85 Q120 95 160 85" stroke="#0ea5e9" stroke-width="3" fill="none" opacity="0.6">
+      <animate attributeName="d" values="M-10 85 Q40 75 80 85 Q120 95 160 85;M-10 87 Q40 77 80 87 Q120 97 160 87;M-10 85 Q40 75 80 85 Q120 95 160 85" dur="2s" repeatCount="indefinite"/>
+    </path>
+  </g>
+  
+  <!-- Sports Car (center-left) -->
+  <g transform="translate(80, 160) scale(0.8)" filter="url(#dropShadow)">
+    <path d="M10 50 Q30 20 80 20 Q130 20 150 50 L155 55 Q130 65 80 65 Q30 65 5 55 Z" fill="url(#blueMetallic)"/>
+    <path d="M45 25 Q65 15 95 25 L90 40 Q65 35 50 40 Z" fill="#1e3a5f" opacity="0.9"/>
+    <path d="M30 35 L45 30" stroke="#1d4ed8" stroke-width="1.5" opacity="0.5"/>
+    <path d="M130 35 L115 30" stroke="#1d4ed8" stroke-width="1.5" opacity="0.5"/>
+    <ellipse cx="35" cy="58" rx="15" ry="12" fill="#1f2937"/>
+    <ellipse cx="35" cy="58" rx="10" ry="8" fill="#4b5563"/>
+    <ellipse cx="125" cy="58" rx="15" ry="12" fill="#1f2937"/>
+    <ellipse cx="125" cy="58" rx="10" ry="8" fill="#4b5563"/>
+    <ellipse cx="148" cy="45" rx="5" ry="4" fill="#fef08a">
+      <animate attributeName="opacity" values="0.7;1;0.7" dur="1s" repeatCount="indefinite"/>
+    </ellipse>
+  </g>
+  
+  <!-- Motorcycle (center-right) -->
+  <g transform="translate(520, 180) scale(0.7)" filter="url(#dropShadow)">
+    <path d="M30 40 L80 25 L100 40 L90 50 L40 50 Z" fill="url(#blueMetallic)"/>
+    <ellipse cx="60" cy="35" rx="25" ry="12" fill="url(#blueMetallic)"/>
+    <path d="M75 30 Q95 25 110 35 L105 40 Q90 35 75 38 Z" fill="#1f2937"/>
+    <circle cx="25" cy="55" r="18" fill="#1f2937"/>
+    <circle cx="25" cy="55" r="12" fill="#4b5563"/>
+    <circle cx="25" cy="55" r="4" fill="#9ca3af"/>
+    <circle cx="105" cy="55" r="18" fill="#1f2937"/>
+    <circle cx="105" cy="55" r="12" fill="#4b5563"/>
+    <circle cx="105" cy="55" r="4" fill="#9ca3af"/>
+    <path d="M25 30 L35 20 M25 30 L15 20" stroke="#60a5fa" stroke-width="3" fill="none"/>
+    <path d="M95 50 L120 55 L125 53" stroke="#6b7280" stroke-width="4" fill="none"/>
+  </g>
+  
+  <!-- Main Text "treazure" with animated gradient -->
+  <text x="140" y="200" font-family="Arial Black, Arial, sans-serif" font-size="72" font-weight="900" fill="url(#textGradient)" filter="url(#textGlow)" letter-spacing="-2">
+    treazure
+  </text>
+  
+  <!-- "Yaad" with bright gold animated gradient -->
+  <text x="470" y="200" font-family="Arial Black, Arial, sans-serif" font-size="72" font-weight="900" fill="url(#yaadGradient)" filter="url(#textGlow)" letter-spacing="-2">
+    Yaad
+  </text>
+  
+  <!-- Animated golden swoosh under text -->
+  <path d="M120 230 Q250 260 350 230 Q450 200 600 235" 
+        stroke="url(#swooshGradient)" 
+        stroke-width="8" 
+        fill="none" 
+        stroke-linecap="round"
+        filter="url(#glow)">
+    <animate attributeName="stroke-width" values="6;10;6" dur="2s" repeatCount="indefinite"/>
+  </path>
+  
+  <!-- Secondary swoosh with shimmer -->
+  <path d="M130 248 Q300 270 580 253" 
+        stroke="#fbbf24" 
+        stroke-width="2" 
+        fill="none" 
+        opacity="0.5"
+        stroke-linecap="round">
+    <animate attributeName="opacity" values="0.3;0.7;0.3" dur="1.5s" repeatCount="indefinite"/>
+  </path>
+  
+  <!-- Sparkle accents -->
+  <g>
+    <polygon points="350,165 353,175 363,178 353,181 350,191 347,181 337,178 347,175" fill="#fbbf24">
+      <animate attributeName="opacity" values="0;1;0" dur="1.5s" repeatCount="indefinite"/>
+      <animateTransform attributeName="transform" type="scale" values="0.5;1.2;0.5" dur="1.5s" repeatCount="indefinite" additive="sum"/>
+    </polygon>
+    <polygon points="580,175 582,182 589,184 582,186 580,193 578,186 571,184 578,182" fill="#a855f7">
+      <animate attributeName="opacity" values="0;1;0" dur="2s" repeatCount="indefinite" begin="0.5s"/>
+      <animateTransform attributeName="transform" type="scale" values="0.5;1.2;0.5" dur="2s" repeatCount="indefinite" begin="0.5s" additive="sum"/>
+    </polygon>
+    <polygon points="120,180 122,187 129,189 122,191 120,198 118,191 111,189 118,187" fill="#ec4899">
+      <animate attributeName="opacity" values="0;1;0" dur="1.8s" repeatCount="indefinite" begin="1s"/>
+      <animateTransform attributeName="transform" type="scale" values="0.5;1.2;0.5" dur="1.8s" repeatCount="indefinite" begin="1s" additive="sum"/>
+    </polygon>
+  </g>
+</svg>

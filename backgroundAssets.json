@@ -1,0 +1,95 @@
+{
+  "heroVideos": [
+    {
+      "id": 1,
+      "category": "car-handshake",
+      "description": "Car dealer and customer shaking hands at dealership",
+      "url": "https://videos.pexels.com/video-files/7578550/7578550-hd_1920_1080_30fps.mp4",
+      "poster": "https://images.pexels.com/videos/7578550/pexels-photo-7578550.jpeg?w=1920",
+      "credit": "Pexels"
+    },
+    {
+      "id": 2,
+      "category": "house-keys",
+      "description": "Real estate agent handing over house keys to happy couple",
+      "url": "https://videos.pexels.com/video-files/7578544/7578544-hd_1920_1080_30fps.mp4",
+      "poster": "https://images.pexels.com/videos/7578544/pexels-photo-7578544.jpeg?w=1920",
+      "credit": "Pexels"
+    },
+    {
+      "id": 3,
+      "category": "car-showroom",
+      "description": "Customer inspecting luxury car in showroom with salesperson",
+      "url": "https://videos.pexels.com/video-files/7579964/7579964-hd_1920_1080_30fps.mp4",
+      "poster": "https://images.pexels.com/videos/7579964/pexels-photo-7579964.jpeg?w=1920",
+      "credit": "Pexels"
+    },
+    {
+      "id": 4,
+      "category": "business-deal",
+      "description": "Business professionals shaking hands after closing deal",
+      "url": "https://videos.pexels.com/video-files/6774533/6774533-hd_1920_1080_25fps.mp4",
+      "poster": "https://images.pexels.com/videos/6774533/pexels-photo-6774533.jpeg?w=1920",
+      "credit": "Pexels"
+    },
+    {
+      "id": 5,
+      "category": "property-tour",
+      "description": "Real estate agent showing property to potential buyers",
+      "url": "https://videos.pexels.com/video-files/7578554/7578554-hd_1920_1080_30fps.mp4",
+      "poster": "https://images.pexels.com/videos/7578554/pexels-photo-7578554.jpeg?w=1920",
+      "credit": "Pexels"
+    }
+  ],
+  "heroBackgrounds": [
+    {
+      "id": 1,
+      "category": "car-handshake",
+      "description": "Car dealer shaking hands with customer at dealership",
+      "url": "https://images.unsplash.com/photo-1560472354-b33ff0c44a43?w=1920&h=1080&fit=crop",
+      "credit": "Unsplash"
+    },
+    {
+      "id": 2,
+      "category": "house-handshake",
+      "description": "Real estate agent shaking hands with home buyer in front of house",
+      "url": "https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=1920&h=1080&fit=crop",
+      "credit": "Unsplash"
+    },
+    {
+      "id": 3,
+      "category": "car-sale",
+      "description": "Customer receiving car keys from salesperson",
+      "url": "https://images.unsplash.com/photo-1549317661-bd32c8ce0db2?w=1920&h=1080&fit=crop",
+      "credit": "Unsplash"
+    },
+    {
+      "id": 4,
+      "category": "property-deal",
+      "description": "Couple shaking hands with agent after property purchase",
+      "url": "https://images.unsplash.com/photo-1560520653-9e0e4c89eb11?w=1920&h=1080&fit=crop",
+      "credit": "Unsplash"
+    },
+    {
+      "id": 5,
+      "category": "business-handshake",
+      "description": "Professional handshake closing a deal",
+      "url": "https://images.unsplash.com/photo-1521791136064-7986c2920216?w=1920&h=1080&fit=crop",
+      "credit": "Unsplash"
+    },
+    {
+      "id": 6,
+      "category": "car-showroom",
+      "description": "Salesperson presenting luxury car to customer",
+      "url": "https://images.unsplash.com/photo-1580273916550-e323be2ae537?w=1920&h=1080&fit=crop",
+      "credit": "Unsplash"
+    },
+    {
+      "id": 7,
+      "category": "home-tour",
+      "description": "Real estate showing with happy clients viewing property",
+      "url": "https://images.unsplash.com/photo-1582407947304-fd86f028f716?w=1920&h=1080&fit=crop",
+      "credit": "Unsplash"
+    }
+  ]
+}
