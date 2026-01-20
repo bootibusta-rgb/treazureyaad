@@ -320,5 +320,8 @@
             box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
         }
 
-        .location-dropdown.open{
-            max-height: 450p…
+        .location-dropdown.open {
+    max-height: 450px;
+    opacity: 1;
+    transform: translateY(0);
+}
