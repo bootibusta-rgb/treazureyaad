@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import './globals.css';
 
 export default function Home() {
   const [showSignupModal, setShowSignupModal] = useState(false);
